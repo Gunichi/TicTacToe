@@ -44,7 +44,7 @@ const TicTacToe = () => {
   const checkDraw = () => {
     let check = Object.keys(boardData).every((v) => boardData[v]);
     setIsDraw(check);
-    if (check) setModalTitle("Match Draw!!!");
+    if (check) setModalTitle("Jogo empatado!!!");
   };
   const checkWinner = () => {
     WINNING_COMBO.map((bd) => {
@@ -56,7 +56,7 @@ const TicTacToe = () => {
       ) {
         setWon(true);
         setWonCombo([a, b, c]);
-        setModalTitle(`Player ${!xTurn ? player : player2} Won!!!`);
+        setModalTitle(`Player ${!xTurn ? player : player2} Ganhou!!!`);
 
         return;
       }
@@ -85,6 +85,7 @@ const TicTacToe = () => {
     setIsDraw(false);
     setModalTitle("");
   };
+
   return (
     <div>
       <h1>Tic Tac Toe</h1>
@@ -100,8 +101,8 @@ const TicTacToe = () => {
       </div>
       <div className="game">
         <div className="game__menu">
-          <p>{xTurn === true ? player : player2}'s Turn</p>
-          <p>{`Game Won:${won} Draw: ${isDraw}`}</p>
+          <p>É a vez de: {xTurn === true ? player : player2}</p>
+          {/* <p>{`Vencedor:${won} Empate: ${isDraw}`}</p> */}
         </div>
         <div className="game__board">
           {[...Array(9)].map((v, idx) => {
@@ -124,7 +125,7 @@ const TicTacToe = () => {
 
       <div className={`modal ${modalTitle ? "show" : ""}`}>
         <div className="modal__title">{modalTitle}</div>
-        <button onClick={reset}>New Game</button>
+        <button onClick={reset}>Novo jogo</button>
       </div>
     </div>
   );
